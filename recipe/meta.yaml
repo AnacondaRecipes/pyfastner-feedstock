@@ -46,3 +46,5 @@ about:
 extra:
   recipe-maintainers:
     - skupr-anaconda
+  skip-lints:
+    - cython_needs_compiler
