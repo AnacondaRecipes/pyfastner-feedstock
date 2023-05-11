@@ -27,10 +27,10 @@ requirements:
 test:
   imports:
     - PyFastNER
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/jianlins/PyFastNER
