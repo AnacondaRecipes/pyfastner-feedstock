@@ -1,0 +1,43 @@
+{% set name = "pyfastner" %}
+{% set version = "1.0.8" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/PyFastNER-{{ version }}.tar.gz
+  sha256: ccb92fa18ec585438aa47d5d6156222fe91d8f7eba2f56121db13243c0e25b66
+
+build:
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python
+    - cython
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python
+    - quicksectx
+
+test:
+  imports:
+    - PyFastNER
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/jianlins/PyFastNER
+  summary: A fast implementation of dictionary based named entity recognition.
+  license: Apache-2.0
+  license_file: PLEASE_ADD_LICENSE_FILE
+
+extra:
+  recipe-maintainers:
+    - skupr-anaconda
