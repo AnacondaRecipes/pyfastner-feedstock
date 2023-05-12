@@ -27,10 +27,10 @@ requirements:
 test:
   imports:
     - PyFastNER
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/jianlins/PyFastNER
@@ -41,8 +41,11 @@ about:
     A fast implementation of dictionary based named entity recognition.
   license: Apache-2.0
   license_family: Apache
-  license_file: LICENSE
+  # the sourse code is missing the license file
+  license_url: https://github.com/jianlins/PyFastNER/blob/master/LICENSE
 
 extra:
   recipe-maintainers:
     - skupr-anaconda
+  skip-lints:
+    - cython_needs_compiler
