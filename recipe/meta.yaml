@@ -1,28 +1,33 @@
 {% set name = "pyfastner" %}
-{% set version = "1.0.8" %}
+{% set version = "1.0.10" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/PyFastNER-{{ version }}.tar.gz
-  sha256: ccb92fa18ec585438aa47d5d6156222fe91d8f7eba2f56121db13243c0e25b66
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/PyFastNER-{{ version }}.tar.gz
+  sha256: d477fc4f7acbb68f0c828b0bed478206092bb8190997dfda006993db5813b262
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
+  skip: true  # [py<37]
 
 requirements:
   host:
     - python
     - cython
     - pip
-    - setuptools
+    - setuptools >=61.0.0
     - wheel
+    - quicksectx >=0.3.1
   run:
     - python
     - quicksectx >=0.3.1
+    - cython
+  build:
+    - {{ compiler('c') }}
 
 test:
   imports:
