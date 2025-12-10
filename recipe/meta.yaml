@@ -1,4 +1,4 @@
-{% set name = "pyfastner" %}
+{% set name = "PyFastNER" %}
 {% set version = "1.0.10" %}
 
 package:
@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/PyFastNER-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d477fc4f7acbb68f0c828b0bed478206092bb8190997dfda006993db5813b262
 
 build:
@@ -15,6 +15,9 @@ build:
   skip: true  # [py<37]
 
 requirements:
+  build:
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
   host:
     - python
     - cython
@@ -26,8 +29,6 @@ requirements:
     - python
     - quicksectx >=0.3.1
     - cython
-  build:
-    - {{ compiler('c') }}
 
 test:
   imports:
@@ -36,21 +37,19 @@ test:
     - pip
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
 
 about:
   home: https://github.com/jianlins/PyFastNER
-  dev_url: https://github.com/jianlins/PyFastNER
-  doc_url: https://github.com/jianlins/PyFastNER
   summary: A fast implementation of dictionary based named entity recognition.
   description: |
     A fast implementation of dictionary based named entity recognition.
   license: Apache-2.0
   license_family: Apache
-  # the sourse code is missing the license file
-  license_url: https://github.com/jianlins/PyFastNER/blob/master/LICENSE
+  license_file: LICENSE
+  dev_url: https://github.com/jianlins/PyFastNER
+  doc_url: https://github.com/jianlins/PyFastNER
 
 extra:
   recipe-maintainers:
     - skupr-anaconda
-  skip-lints:
-    - cython_needs_compiler
