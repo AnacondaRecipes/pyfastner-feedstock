@@ -8,6 +8,10 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d477fc4f7acbb68f0c828b0bed478206092bb8190997dfda006993db5813b262
+  patches:
+    # pypi upstream doesn't have requirements.txt file
+    # github upstream doesn't release 1.0.10 version so cannot be used instead
+    - patches/0001-fix-missing-requirements-file.patch
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
@@ -16,7 +20,7 @@ build:
 
 requirements:
   build:
-    - {{ stdlib('c') }}
+    # - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
     - python
