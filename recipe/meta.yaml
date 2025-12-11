@@ -11,7 +11,7 @@ source:
   patches:
     # pypi upstream doesn't have requirements.txt file
     # github upstream doesn't release 1.0.10 version so cannot be used instead
-    - patches/0001-fix-missing-requirements-file.patch
+    - patches/0001-fix-missing-upstream-requirements-file.patch
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
