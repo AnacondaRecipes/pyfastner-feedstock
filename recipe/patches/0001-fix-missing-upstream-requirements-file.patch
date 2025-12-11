@@ -1,15 +1,15 @@
-From c46c29c5523eb5acb00b2b36b9489d6c1d8dcf83 Mon Sep 17 00:00:00 2001
-From: Patryk Kups <pkups@anaconda.com>
-Date: Wed, 10 Dec 2025 17:47:09 +0100
+From de1cc2f5d75681169e9aa99d920c9ad33b1f6158 Mon Sep 17 00:00:00 2001
+From: Your Name <you@example.com>
+Date: Thu, 11 Dec 2025 12:23:01 +0000
 Subject: [PATCH] patch
 
 ---
- pyproject.toml | 7 +++++--
+ pyproject.toml | 9 ++++++---
  setup.py       | 9 ++++++---
- 2 files changed, 11 insertions(+), 5 deletions(-)
+ 2 files changed, 12 insertions(+), 6 deletions(-)
 
 diff --git a/pyproject.toml b/pyproject.toml
-index 47c25c3..10653b4 100644
+index 47c25c3..3f6860f 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
 @@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
@@ -21,7 +21,7 @@ index 47c25c3..10653b4 100644
  authors = [{name = "Jianlin", email="jianlinshi.cn@gmail.com"}]
  description = "PyFastNER is the python implementation of FastNER, which is orginally developed using Java. It uses hash function to process multiple rules at the same time. Similar to FastNER, PyFastNER supports token-based rules (FastNER--under developing) and character-based rules (FastCNER). It is licensed under the MIT License."
  keywords=['PyFastNER', 'ner', 'regex']
-@@ -15,9 +15,12 @@ classifiers = [
+@@ -15,10 +15,13 @@ classifiers = [
      "Programming Language :: Python :: 3",
  ]
  readme='README.md'
@@ -35,6 +35,9 @@ index 47c25c3..10653b4 100644
  version = {attr = "PyFastNER.__version__" }
  
  [project.urls]
+-Source = "https://github.com/jianlins/PyFastNER"
+\ No newline at end of file
++Source = "https://github.com/jianlins/PyFastNER"
 diff --git a/setup.py b/setup.py
 index 4883686..e2812f9 100644
 --- a/setup.py
@@ -63,5 +66,5 @@ index 4883686..e2812f9 100644
      package_data={'': ['*.pyx', '*.pxd']},
      include_dirs=include_dirs
 -- 
-2.39.5 (Apple Git-154)
+2.43.7
 
