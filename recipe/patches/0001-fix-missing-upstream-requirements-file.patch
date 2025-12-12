@@ -1,7 +1,7 @@
 From 7fb520d3376f4c5b0fd570a6ef7532f03f95d133 Mon Sep 17 00:00:00 2001
-From: Your Name <you@example.com>
+From: Patryk Kups <pkups@anaconda.com>
 Date: Thu, 11 Dec 2025 12:38:04 +0000
-Subject: [PATCH] patch
+Subject: [PATCH] fix missing upstream requirements file
 
 ---
  setup.py | 9 ++++++---
