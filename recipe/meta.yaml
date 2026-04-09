@@ -6,17 +6,25 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d477fc4f7acbb68f0c828b0bed478206092bb8190997dfda006993db5813b262
-  patches:
-    # pypi upstream doesn't have requirements.txt file
-    # github upstream doesn't release 1.0.10 version so cannot be used instead
-    - patches/0001-fix-missing-upstream-requirements-file.patch
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: d477fc4f7acbb68f0c828b0bed478206092bb8190997dfda006993db5813b262
+
+    patches:
+      # pypi upstream doesn't have requirements.txt file
+      # github upstream doesn't release 1.0.10 version so cannot be used instead
+      - patches/0001-fix-missing-upstream-requirements-file.patch
+
+    # Github src for TESTS only
+    # Upstream github src version 1.0.10 does not exist here, so we take the latest available for test only.
+    # TODO: check/fix this once new of right version upstream available
+  - url: https://github.com/jianlins/{{ name }}/archive/refs/tags/1.0.9.tar.gz
+    sha256: e8e1072c94c4e486a56a5580f5b47756ae2c93e6f9f1581870fdd3cc5bd251b4
+    folder: gh_src
 
 build:
-  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  number: 0
+  number: 1
   skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   build:
@@ -35,6 +43,9 @@ requirements:
     - cython
 
 test:
+  source_files:
+    - gh_src/tests/crule_test.tsv
+    - gh_src/tests/test_FastCNER.py
   imports:
     - PyFastNER
   requires:
@@ -42,6 +53,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - python gh_src/tests/test_FastCNER.py
 
 about:
   home: https://github.com/jianlins/PyFastNER
